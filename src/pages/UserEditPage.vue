@@ -36,7 +36,6 @@ const onSubmit = async () => {
         'id': currentUser.id,
         [editUser.value.editKey as string]: editUser.value.currentValue,
     })
-    console.log(res, '更新请求');
     if (res.code === 0 && res.data > 0) {
         alert('修改成功');
         router.back();

@@ -28,7 +28,7 @@ const onSubmit = async () => {
     userAccount: userAccount.value,
     userPassword: userPassword.value,
   })
-  console.log(res, '用户登录');
+  
   if (res.code === 0 && res.data) {
     alert('登录成功');
     // 跳转到之前的页面

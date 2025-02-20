@@ -22,11 +22,7 @@ const router = useRouter();
 
 onMounted(async () => {
     //获取用户信息
-    const res = await getCurrentUser();
-    if (res) {
-        user.value = res;
-    } else {
-    }
+    user.value = await getCurrentUser();
 })
 
 const toEdit = (editKey: string, editName: string, currentValue: string) => {
