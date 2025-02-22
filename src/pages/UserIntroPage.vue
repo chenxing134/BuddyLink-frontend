@@ -1,8 +1,4 @@
 <template>
-  <van-sticky>
-    <van-nav-bar :title="`用户详情`" left-arrow @click-left="onClickLeft">
-    </van-nav-bar>
-  </van-sticky>
   <div v-if="userInfo" style="text-align: center;">
     <van-image round width="8rem" height="8rem" :src="userInfo.avatarUrl"
       style="margin-top: 20px; margin-bottom: 20px; box-shadow: 0 0 15px rgba(0, 0, 0, 0.4)" />
@@ -45,7 +41,6 @@ onMounted(async () => {
   });
   if (res.code === 0) {
     userInfo.value = res.data;
-    console.log(userInfo.value)
   } else {
     alert('用户信息获取失败' + (`${res.description}` ? `，${res.description}` : ''));
   }

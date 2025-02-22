@@ -6,11 +6,27 @@
         <van-cell title="头像" is-link to='/user/edit'>
             <img style="height: 48px" :src="user.avatarUrl" />
         </van-cell>
-        <van-cell title="性别" is-link to='/user/edit' :value="user.gender"
-            @click="toEdit('gender', '性别', user.gender)" />
-        <van-cell title="电话" is-link to='/user/edit' :value="user.phone" @click="toEdit('phone', '电话', user.phone)" />
-        <van-cell title="邮箱" is-link to='/user/edit' :value="user.email" @click="toEdit('email', '邮箱', user.email)" />
-        <van-cell title="星球编号" :value="user.planetCode" />
+        <van-cell title="性别" is-link to="/user/edit" :value="user.gender !== undefined && user.gender !== null ?
+            (user.gender === 1 ? '男' : '女') : '未填写'" @click="toEdit('gender', '性别（0 女 1 男）', user.gender)" />
+        <van-cell title="电话" is-link to="/user/edit" :value="user.phone ? user.phone : '未填写'"
+            @click="toEdit('phone', '电话', user.phone)" />
+        <van-cell title="邮箱" is-link to="/user/edit" :value="user?.email ? user.email : '未填写'"
+            @click="toEdit('email', '邮箱', user.email)" />
+        <van-cell title="标签" is-link to="/user/edit" :value="user?.tags ? '' : '未填写'"
+            @click="toEditTags('tags', '标签', user.tags)">
+            <template #right-icon v-if="user.tags && user.tags.length > 0">
+                <van-tag plain color="#ffe1e1" text-color="#ad0000" style="margin: 5px;"
+                    v-for="tag in JSON.parse(user.tags)">
+                    {{ tag }}
+                </van-tag>
+            </template>
+        </van-cell>
+        <van-cell title="个人介绍" is-link to="/user/edit" :value="user?.profile ? user.profile : '未填写'"
+            @click="toEdit('profile', '个人介绍', user.profile)" />
+        <van-cell title="经度" is-link to="/user/edit" :value="user?.longitude ? user.longitude : '未填写'"
+            @click="toEdit('longitude', '经度', user.longitude)" />
+        <van-cell title="纬度" is-link to="/user/edit" :value="user?.dimension ? user.dimension : '未填写'"
+            @click="toEdit('dimension', '纬度', user.dimension)" />
         <van-cell title="注册时间" :value="user.createTime" />
     </div>
     <div v-else>
@@ -19,7 +35,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 import { getCurrentUser } from '../services/user';
@@ -35,7 +51,7 @@ onMounted(async () => {
         user.value = res;
     } else {
     }
-})
+});
 
 const toEdit = (editKey: string, editName: string, currentValue: string) => {
     router.push({
@@ -46,7 +62,16 @@ const toEdit = (editKey: string, editName: string, currentValue: string) => {
             currentValue,
         }
     })
-}
+};
 
+const toEditTags = (editKey: string, editName: string, currentValue: string) => {
+    router.push({
+        path: '/user/registerTags',
+        query: {
+            type: 1,
+            userId: user.value.id,
+        }
+    })
+};
 </script>
 <style scoped></style>

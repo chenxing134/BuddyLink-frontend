@@ -1,11 +1,4 @@
 <template>
-  <van-sticky>
-    <van-nav-bar :title="`至少选一个标签`" left-arrow @click-left="onClickLeft">
-      <template #right>
-        <van-icon name="search" size="18" />
-      </template>
-    </van-nav-bar>
-  </van-sticky>
   <form action="/public">
     <van-search v-model="searchText" show-action placeholder="请输入要搜索的标签" @search="onSearch" @cancel="onCancel" />
   </form>
@@ -51,13 +44,10 @@ onMounted(() => {
 const searchText = ref('');
 let originTagList = [
   {
-    text: '专业',
+    text: '性别',
     children: [
-      { text: 'Java', id: 'java' },
-      { text: 'C++', id: 'c++' },
-      { text: 'Go', id: 'go' },
-      { text: '嵌入式', id: '嵌入式' },
-      { text: 'Python', id: 'python' },
+      { text: '男', id: '男' },
+      { text: '女', id: '女' },
     ],
   },
   {
@@ -70,13 +60,16 @@ let originTagList = [
       { text: '研一', id: '研一' },
       { text: '研二', id: '研二' },
       { text: '研三', id: '研三' },
-    ],
+    ]
   },
   {
-    text: '性别',
+    text: '方向',
     children: [
-      { text: '男', id: '男' },
-      { text: '女', id: '女' },
+      { text: 'Java', id: 'java' },
+      { text: 'C++', id: 'c++' },
+      { text: 'Go', id: 'go' },
+      { text: '嵌入式', id: '嵌入式' },
+      { text: 'Python', id: 'python' },
     ],
   },
   {

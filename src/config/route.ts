@@ -16,18 +16,18 @@ import RegisterTagsPage from '@/pages/RegisterTagsPage.vue';
 
 const routes = [
     { path: '/', component: Index },
-    { path: '/team', title: '找队伍', component: TeamPage },
+    { path: '/team', title: '搜索队伍', component: TeamPage },
     { path: '/team/add', title: '创建队伍', component: TeamAddPage },
     { path: '/team/update', title: '更新队伍', component: TeamUpdatePage },
     { path: '/user', title: '个人信息', component: UserPage },
     { path: '/user/update', title: '更新信息', component: UserUpdatePage },
-    { path: '/search', title: '找伙伴', component: SearchPage },
-    {path: '/user/intro/:id', title: '用户详情', component: UserIntroPage, meta: {layout: 'user-intro'}},
+    { path: '/search', title: '搜索伙伴', component: SearchPage },
+    { path: '/user/intro/:id', title: '用户详情', component: UserIntroPage },
     { path: '/user/list', title: '用户列表', component: SearchResultPage },
     { path: '/user/edit', title: '编辑信息', component: UserEditPage },
     { path: '/user/login', title: '登录', component: UserLoginPage },
-    {path: '/user/register', title: '注册', component: UserRegisterPage, meta: {layout: 'register'}},
-    {path: '/user/registerTags', title: '选择标签', component: RegisterTagsPage, meta: {layout: 'register-tags'}},
+    { path: '/user/register', title: '注册', component: UserRegisterPage },
+    { path: '/user/registerTags', title: '选择标签', component: RegisterTagsPage },
     { path: '/user/team/join', title: '加入的队伍', component: UserTeamJoinPage },
     { path: '/user/team/create', title: '创建的队伍', component: UserTeamCreatePage },
 ]
