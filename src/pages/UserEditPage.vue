@@ -14,6 +14,7 @@ import { ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import myAxios from '../plugins/myAxios';
 import { getCurrentUser } from "../services/user";
+import { showFailToast, showSuccessToast } from 'vant';
 
 const route = useRoute();
 const router = useRouter();
@@ -28,7 +29,7 @@ const onSubmit = async () => {
     const currentUser = await getCurrentUser();
 
     if (!currentUser) {
-        alert('用户未登录');
+        showFailToast('用户未登录');
         return;
     }
 
@@ -37,10 +38,10 @@ const onSubmit = async () => {
         [editUser.value.editKey as string]: editUser.value.currentValue,
     })
     if (res.code === 0 && res.data > 0) {
-        alert('修改成功');
+        showSuccessToast('修改成功');
         router.back();
     } else {
-        alert('修改错误');
+        showFailToast('修改错误');
     }
 };
 </script>

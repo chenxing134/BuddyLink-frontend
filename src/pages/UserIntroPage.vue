@@ -21,6 +21,7 @@
 import { useRoute, useRouter } from "vue-router";
 import myAxios from "../plugins/myAxios";
 import { onMounted, ref } from "vue";
+import { showFailToast } from "vant";
 
 const router = useRouter();
 const route = useRoute();
@@ -42,7 +43,7 @@ onMounted(async () => {
   if (res.code === 0) {
     userInfo.value = res.data;
   } else {
-    alert('用户信息获取失败' + (`${res.description}` ? `，${res.description}` : ''));
+    showFailToast('用户信息获取失败' + (`${res.description}` ? `，${res.description}` : ''));
   }
 
 });

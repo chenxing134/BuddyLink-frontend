@@ -20,6 +20,7 @@ import myAxios from "../plugins/myAxios";
 import UserCardList from "../components/UserCardList.vue";
 import { UserType } from "../models/user";
 import InfiniteLoading from "v3-infinite-loading";
+import { showFailToast, showSuccessToast } from 'vant';
 
 const route = useRoute();
 const { tags } = route.query;
@@ -43,10 +44,11 @@ const loadData = async () => {
                 num,
             },
         }).then(function (response) {
+            showSuccessToast('请求成功');
             return response?.data;
         }).catch(function (error) {
             console.error('/user/match error', error);
-            alert('请求失败');
+            showFailToast('请求失败');
         });
 
         if (userListData) {
@@ -124,7 +126,7 @@ const onSearch = async (searchText: string) => {
         loading.value = false;
 
     } else {
-        alert('搜索失败' + (res.description ? `，${res.description}` : ''));
+        showFailToast('搜索失败' + (res.description ? `，${res.description}` : ''));
     }
 
     loading.value = false;

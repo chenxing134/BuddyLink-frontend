@@ -50,6 +50,7 @@ import myAxios from "../plugins/myAxios";
 import { onMounted, ref } from "vue";
 import { getCurrentUser } from "../services/user";
 import { useRouter } from "vue-router";
+import { showFailToast, showSuccessToast } from "vant";
 
 interface TeamCardListProps {
   teamList: TeamType[];
@@ -97,10 +98,10 @@ const doJoinTeam = async () => {
     password: password.value
   });
   if (res?.code === 0) {
-    alert('加入成功');
+    showSuccessToast('加入成功');
     doJoinCancel();
   } else {
-    alert('加入失败' + (res.description ? `,${res.description}` : ''));
+    showFailToast('加入失败' + (res.description ? `,${res.description}` : ''));
   }
 }
 
@@ -126,9 +127,9 @@ const doQuitTeam = async (id: number) => {
     teamId: id
   });
   if (res?.code === 0) {
-    alert('操作成功');
+    showSuccessToast('操作成功');
   } else {
-    alert('操作失败' + (res.description ? `，${res.description}` : ''));
+    showFailToast('操作失败' + (res.description ? `，${res.description}` : ''));
   }
 }
 
@@ -141,9 +142,9 @@ const doDeleteTeam = async (id: number) => {
     id,
   });
   if (res?.code === 0) {
-    alert('操作成功');
+    showSuccessToast('操作成功');
   } else {
-    alert('操作失败' + (res.description ? `，${res.description}` : ''));
+    showFailToast('操作失败' + (res.description ? `，${res.description}` : ''));
   }
 }
 

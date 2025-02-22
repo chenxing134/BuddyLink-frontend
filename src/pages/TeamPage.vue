@@ -18,6 +18,7 @@ import { useRouter } from "vue-router";
 import TeamCardList from "../components/TeamCardList.vue";
 import { onMounted, ref } from "vue";
 import myAxios from "../plugins/myAxios";
+import { showFailToast } from "vant";
 
 const active = ref('public')
 const router = useRouter();
@@ -54,7 +55,7 @@ const listTeam = async (val = '', status = 0) => {
     if (res?.code === 0) {
         teamList.value = res.data;
     } else {
-        alert('加载队伍失败，请刷新重试');
+        showFailToast('加载队伍失败，请刷新重试');
     }
 }
 
@@ -70,4 +71,12 @@ const onSearch = (val) => {
 </script>
 
 <style scoped>
+.add-button {
+    position: fixed;
+    bottom: 60px;
+    width: 50px;
+    right: 12px;
+    height: 50px;
+    border-radius: 50%;
+}
 </style>

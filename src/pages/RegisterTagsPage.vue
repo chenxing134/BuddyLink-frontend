@@ -23,6 +23,7 @@
 import { onMounted, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import myAxios from "../plugins/myAxios.ts";
+import { showFailToast, showSuccessToast } from 'vant';
 
 const router = useRouter();
 const route = useRoute();
@@ -131,15 +132,15 @@ const doSearchResult = async () => {
       dimension: registerUserParam.dimension,
     });
     if (res?.code === 0) {
-      alert('注册成功');
+      showSuccessToast('注册成功');
       router.push({
         path: '/user/login'
       })
     } else {
-      alert('注册失败' + (`${res.description}` ? `，${res.description}` : ''));
+      showFailToast('注册失败' + (`${res.description}` ? `，${res.description}` : ''));
     }
   } else {
-    alert('请至少选择一个标签');
+    showFailToast('请至少选择一个标签');
   }
 };
 
@@ -150,13 +151,13 @@ const editUserTags = async () => {
       id: parseInt(userId),
     });
     if (res?.code === 0) {
-      alert('修改成功');
+      showSuccessToast('修改成功');
       router.back();
     } else {
-      alert('修改失败');
+      showFailToast('修改失败');
     }
   } else {
-    alert('请至少选择一个标签');
+    showFailToast('请至少选择一个标签');
   }
 
 };
