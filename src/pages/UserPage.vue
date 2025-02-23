@@ -17,6 +17,7 @@
         <van-cell title="修改信息" is-link to="/user/update" />
         <van-cell title="我创建的队伍" is-link to="/user/team/create" />
         <van-cell title="我加入的队伍" is-link to="/user/team/join" />
+        <van-button class="logout-button-container" type="primary" @click="userLogout">退出登录</van-button>
     </div>
     <div v-else>
         加载中...
@@ -26,18 +27,35 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
-
+import myAxios from "../plugins/myAxios";
 import { getCurrentUser } from '../services/user';
+import { showConfirmDialog, showFailToast, showSuccessToast } from 'vant';
 
 
 const user = ref();
 const router = useRouter();
 
 onMounted(async () => {
-    //获取用户信息
     user.value = await getCurrentUser();
 })
 
+const userLogout = async () => {
+    showConfirmDialog({
+        title: '确认操作',
+        message: '确定要退出登录吗？',
+    }).then(async () => {
+        const res: any = await myAxios.post('/user/logout');
+        if (res?.code === 0) {
+            showSuccessToast("退出成功");
+            router.push({
+                path: '/user/login'
+            })
+        } else {
+            showFailToast("退出失败");
+        }
+    }).catch(() => {
+    });
+};
 const toEdit = (editKey: string, editName: string, currentValue: string) => {
     router.push({
         path: '/user/edit',
@@ -72,5 +90,15 @@ const toEdit = (editKey: string, editName: string, currentValue: string) => {
     background: white;
     width: 216px;
     height: 100px;
+}
+
+.logout-button-container {
+    position: fixed;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 320px;
+    height: 50px;
+    text-align: center;
 }
 </style>

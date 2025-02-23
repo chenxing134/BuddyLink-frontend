@@ -1,6 +1,6 @@
 <template>
     <van-notice-bar left-icon="volume-o" background="#ECF9FF" color="#1989FA"
-    text="富强 民主 文明 和谐 自由 平等 公正 法制 爱国 敬业 诚信 友善"/>
+        text="富强 民主 文明 和谐 自由 平等 公正 法制 爱国 敬业 诚信 友善" />
     <van-search v-model="searchText" placeholder="搜索附近用户(输入0-10000内整数)" @search="onSearch(searchText)"
         @clear="handleClear" />
     <van-cell center title="心动模式">
