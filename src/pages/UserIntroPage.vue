@@ -43,7 +43,7 @@ onMounted(async () => {
   if (res.code === 0) {
     userInfo.value = res.data;
   } else {
-    showFailToast('用户信息获取失败' + (`${res.description}` ? `，${res.description}` : ''));
+    showFailToast('用户信息获取失败');
   }
 
 });

@@ -83,6 +83,18 @@ let originTagList = [
       { text: '内卷', id: '内卷' },
     ],
   },
+  {
+    text: '爱好',
+    children: [
+      { text: '编程', id: '编程' },
+      { text: '电影', id: '电影' },
+      { text: '音乐', id: '音乐' },
+      { text: '绘画', id: '绘画' },
+      { text: '足球', id: '足球' },
+      { text: '篮球', id: '篮球' },
+      { text: '乒乓球', id: '乒乓球' },
+    ],
+  },
 ];
 let tagList = ref(originTagList);
 const onSearch = () => {
@@ -106,7 +118,7 @@ const onCancel = () => {
 const activeIds = ref([]);
 const activeIndex = ref(0);
 
-// 一处标签
+// 移除标签
 function doClose(tag) {
   activeIds.value = activeIds.value.filter(item => {
     return item !== tag
@@ -122,7 +134,7 @@ const doSearchResult = async () => {
       userAccount: registerUserParam.userAccount,
       userPassword: registerUserParam.userPassword,
       checkPassword: registerUserParam.checkPassword,
-      /*    planetCode: registerUserParam.planetCode,
+      /*
           gender: registerUserParam.gender,
           avatarUrl: registerUserParam.avatarUrl,*/
       username: registerUserParam.username,
@@ -137,7 +149,7 @@ const doSearchResult = async () => {
         path: '/user/login'
       })
     } else {
-      showFailToast('注册失败' + (`${res.description}` ? `，${res.description}` : ''));
+      showFailToast('注册失败');
     }
   } else {
     showFailToast('请至少选择一个标签');

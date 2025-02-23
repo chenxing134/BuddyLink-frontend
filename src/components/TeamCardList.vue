@@ -101,7 +101,7 @@ const doJoinTeam = async () => {
       showSuccessToast('加入成功');
       doJoinCancel();
     } else {
-      showFailToast('加入失败' + (res.description ? `,${res.description}` : ''));
+      showFailToast('加入失败');
     }
   }).catch(() => {
   });
@@ -125,9 +125,9 @@ const doQuitTeam = async (id: number) => {
       teamId: id
     });
     if (res?.code === 0) {
-      showSuccessToast('操作成功');
+      showSuccessToast('退出成功');
     } else {
-      showFailToast('操作失败' + (res.description ? `，${res.description}` : ''));
+      showFailToast('退出失败');
     }
   }).catch(() => {
   });
@@ -142,9 +142,9 @@ const doDeleteTeam = async (id: number) => {
       id,
     });
     if (res?.code === 0) {
-      showSuccessToast('操作成功');
+      showSuccessToast('解散成功');
     } else {
-      showFailToast('操作失败' + (res.description ? `，${res.description}` : ''));
+      showFailToast('解散失败');
     }
   }).catch(() => {
   });
