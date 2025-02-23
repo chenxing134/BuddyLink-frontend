@@ -27,7 +27,7 @@
             @click="toEdit('longitude', '经度', user.longitude)" />
         <van-cell title="纬度" is-link to="/user/edit" :value="user?.dimension ? user.dimension : '未填写'"
             @click="toEdit('dimension', '纬度', user.dimension)" />
-        <van-cell title="注册时间" :value="user.createTime" />
+        <van-cell title="注册时间" :value="formatDateTime(user.createTime)" />
     </div>
     <div v-else>
         加载中...
@@ -35,11 +35,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
-
 import { getCurrentUser } from '../services/user';
-
 
 const user = ref();
 const router = useRouter();
@@ -49,7 +47,6 @@ onMounted(async () => {
     const res = await getCurrentUser();
     if (res) {
         user.value = res;
-    } else {
     }
 });
 
@@ -73,5 +70,17 @@ const toEditTags = (editKey: string, editName: string, currentValue: string) => 
         }
     })
 };
+
+const formatDateTime = (dateTime: string) => {
+    const date = new Date(dateTime);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const hour = String(date.getHours()).padStart(2, '0');
+    const minute = String(date.getMinutes()).padStart(2, '0');
+    const second = String(date.getSeconds()).padStart(2, '0');
+    return `${year}-${month}-${day} ${hour}:${minute}:${second}`;
+}
 </script>
+
 <style scoped></style>

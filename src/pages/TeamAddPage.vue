@@ -7,11 +7,10 @@
                 <van-field v-model="addTeamData.description" rows="4" autosize label="队伍描述" type="textarea"
                     placeholder="请输入队伍描述" />
                 <van-field is-link readonly name="datePicker" label="过期时间"
-                    :placeholder="formattedExpireTime || '点击选择过期时间'"
-                    @click="showPicker = true" />
+                    :placeholder="formattedExpireTime || '点击选择过期时间'" @click="showPicker = true" />
                 <van-popup v-model:show="showPicker" position="bottom">
-                    <van-picker-group title="请选择过期时间" :tabs="['选择日期', '选择时间']" next-step-text="下一步"
-                        @confirm="onConfirm" @cancel="onCancel">
+                    <van-picker-group title="请选择过期时间" :tabs="['选择日期', '选择时间']" next-step-text="下一步" @confirm="onConfirm"
+                        @cancel="onCancel">
                         <van-date-picker v-model="currentDate" :min-date="minDate" />
                         <van-time-picker v-model="currentTime" />
                     </van-picker-group>

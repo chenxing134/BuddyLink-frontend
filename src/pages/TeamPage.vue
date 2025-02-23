@@ -74,9 +74,10 @@ const onSearch = (val) => {
 .add-button {
     position: fixed;
     bottom: 60px;
+    left: 12px;
     width: 50px;
-    right: 12px;
     height: 50px;
     border-radius: 50%;
+    z-index: 1000;
 }
 </style>

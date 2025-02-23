@@ -1,5 +1,6 @@
 <template>
-    <van-search v-model="searchText" placeholder="搜索附近用户" @search="onSearch(searchText)" />
+    <van-search v-model="searchText" placeholder="搜索附近用户(输入0-10000内整数)" @search="onSearch(searchText)"
+        @clear="handleClear" />
     <van-cell center title="心动模式">
         <template #right-icon>
             <van-switch v-model="isMatchMode" size="24" @change="onMatchModeChange" />
@@ -137,10 +138,17 @@ const loadMore = () => {
         loadData();
     }
 };
+const handleClear = () => {
+    searchText.value = '';
+    isMatchMode.value = false;
+    pageNum = 1;
+    hasMoreData.value = true;
+    loadData();
+};
 
 watchEffect(() => {
     loadData();
-})
+});
 
 </script>
 

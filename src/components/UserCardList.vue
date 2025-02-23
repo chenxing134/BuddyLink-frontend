@@ -1,6 +1,7 @@
 <template>
   <van-skeleton title avatar :row="3" :loading="props.loading" v-for="user in props.userList">
-    <van-card :desc="user.profile" :title="`${user.username}`" :price="`${user.distance} km`" :thumb="user.avatarUrl">
+    <van-card :desc="user.profile" :title="`${user.username}`" :price="`${user.distance} km`" :thumb="user.avatarUrl"
+      :currency="``">
       <template #tags>
         <van-tag plain color="#ffe1e1" text-color="#ad0000" v-for="tag in user.tags"
           style="margin-right: 8px; margin-top: 8px">
@@ -16,7 +17,7 @@
 
 <script setup lang="ts">
 import { UserType } from "../models/user";
-import {useRouter} from "vue-router";
+import { useRouter } from "vue-router";
 
 const router = useRouter();
 interface UserCardListProps {
@@ -31,8 +32,8 @@ const props = withDefaults(defineProps<UserCardListProps>(), {
 });
 
 const toIntroUser = (id: number) => {
-    router.push(`/user/intro/${id}`);
-  }
+  router.push(`/user/intro/${id}`);
+}
 </script>
 
 <style scoped></style>
