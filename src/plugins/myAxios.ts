@@ -4,7 +4,7 @@ import { showFailToast } from "vant";
 
 const isDev = process.env.NODE_ENV === 'development';
 const myAxios: AxiosInstance = axios.create({
-    baseURL: isDev ? 'http://localhost:8080/api' : 'http://back.friend.huifly.cn/api',
+    baseURL: isDev ? 'http://localhost:8080/api' : 'http://192.168.59.129/api',
 });
 
 myAxios.defaults.withCredentials = true; // 配置为true
